@@ -52,7 +52,7 @@ setup(
     test_suite="nose.collector",
     entry_points={
         'rdf.plugins.store': [
-            'Elasticsearch = rdflib_elsticstore:Elasticsearch'
+            'Elasticsearch = rdflib_elasticstore:Elasticsearch'
         ]
     }
 )
