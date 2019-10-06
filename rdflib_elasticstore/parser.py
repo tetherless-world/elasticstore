@@ -19,7 +19,7 @@ from pyparsing import CaselessKeyword as Keyword  # watch out :)
 from .parserutils import Comp, Param, ParamList
 
 from . import operators as op
-from rdflib.compat import decodeUnicodeEscape
+#from rdflib.compat import decodeUnicodeEscape
 from six import binary_type, unichr
 
 import rdflib
@@ -295,14 +295,14 @@ DOUBLE_NEGATIVE.setParseAction(lambda x: neg(x[0]))
 # ) + ZeroOrMore( ~ Literal("'\\") | ECHAR ) ) + "'''"
 STRING_LITERAL_LONG1 = Regex(u"'''((?:'|'')?(?:[^'\\\\]|\\\\['ntbrf\\\\]))*'''")
 STRING_LITERAL_LONG1.setParseAction(
-    lambda x: rdflib.Literal(decodeUnicodeEscape(x[0][3:-3])))
+    lambda x: rdflib.Literal(rdflib.compat.decodeUnicodeEscape(x[0][3:-3])))
 
 # [159] STRING_LITERAL_LONG2 ::= '"""' ( ( '"' | '""' )? ( [^"\] | ECHAR ) )* '"""'
 # STRING_LITERAL_LONG2 = Literal('"""') + ( Optional( Literal('"') | '""'
 # ) + ZeroOrMore( ~ Literal('"\\') | ECHAR ) ) +  '"""'
 STRING_LITERAL_LONG2 = Regex(u'"""(?:(?:"|"")?(?:[^"\\\\]|\\\\["ntbrf\\\\]))*"""')
 STRING_LITERAL_LONG2.setParseAction(
-    lambda x: rdflib.Literal(decodeUnicodeEscape(x[0][3:-3])))
+    lambda x: rdflib.Literal(rdflib.compat.decodeUnicodeEscape(x[0][3:-3])))
 
 # [156] STRING_LITERAL1 ::= "'" ( ([^#x27#x5C#xA#xD]) | ECHAR )* "'"
 # STRING_LITERAL1 = Literal("'") + ZeroOrMore(
@@ -311,7 +311,7 @@ STRING_LITERAL_LONG2.setParseAction(
 STRING_LITERAL1 = Regex(
     u"'(?:[^'\\n\\r\\\\]|\\\\['ntbrf\\\\])*'(?!')", flags=re.U)
 STRING_LITERAL1.setParseAction(
-    lambda x: rdflib.Literal(decodeUnicodeEscape(x[0][1:-1])))
+    lambda x: rdflib.Literal(rdflib.compat.decodeUnicodeEscape(x[0][1:-1])))
 
 # [157] STRING_LITERAL2 ::= '"' ( ([^#x22#x5C#xA#xD]) | ECHAR )* '"'
 # STRING_LITERAL2 = Literal('"') + ZeroOrMore (
@@ -320,7 +320,7 @@ STRING_LITERAL1.setParseAction(
 STRING_LITERAL2 = Regex(
     u'"(?:[^"\\n\\r\\\\]|\\\\["ntbrf\\\\])*"(?!")', flags=re.U)
 STRING_LITERAL2.setParseAction(
-    lambda x: rdflib.Literal(decodeUnicodeEscape(x[0][1:-1])))
+    lambda x: rdflib.Literal(rdflib.compat.decodeUnicodeEscape(x[0][1:-1])))
 
 # [161] NIL ::= '(' WS* ')'
 NIL = Literal('(') + ')'
