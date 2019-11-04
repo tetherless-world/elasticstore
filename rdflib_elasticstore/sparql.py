@@ -14,7 +14,7 @@ from rdflib.term import Node
 
 from .parserutils import CompValue
 
-import .
+from . import *
 
 
 class SPARQLError(Exception):

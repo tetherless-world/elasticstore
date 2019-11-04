@@ -41,7 +41,7 @@ setup(
         "alembic>=0.8.8",
         "rdflib>=4.0",
         "six>=1.10.0",
-        "elasticsearch>=1.1.4",
+        "elasticsearch>=7.0.0",
     ],
     setup_requires=[
         "nose>=1.3.6",
@@ -52,7 +52,7 @@ setup(
     test_suite="nose.collector",
     entry_points={
         'rdf.plugins.store': [
-            'Elasticsearch = rdflib_elasticstore:Elasticsearch'
+            'Elasticsearch = rdflib_elasticstore.elasticstore:ElasticSearchStore'
         ]
     }
 )

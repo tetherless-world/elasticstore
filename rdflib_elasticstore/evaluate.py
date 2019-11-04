@@ -20,7 +20,7 @@ import itertools
 from rdflib import Variable, Graph, BNode, URIRef, Literal
 from six import iteritems, itervalues
 
-import .CUSTOM_EVALS
+from . import CUSTOM_EVALS
 from .parserutils import value
 from .sparql import (
     QueryContext, AlreadyBound, FrozenBindings, SPARQLError)
